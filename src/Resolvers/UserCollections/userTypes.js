@@ -4,7 +4,7 @@ const userTypeDefs = gql`
     
     type Query {
         signIn(data: signInInput): UserDetail!,
-        getUser(limit: Int, page: Int,fullName: String, role:String, email: String, _id: String, img: String): User!,
+        getUser(limit: Int, page: Int,fullName: String, role:String, email: String, _id: String): User!,
     }
     
     type Mutation {
