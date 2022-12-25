@@ -82,12 +82,10 @@ userSchema.statics.findByCredentials = async (email, password) => {
 
 }
 
-
-
 // Generate Json Web Token for Registration
 userSchema.methods.generateAuthToken = async function () {
     const user = this;
-    const secretKey = process.env.SIGNATURE_KEY;
+    const secretKey = "BlackBoyHeal";
     const token = await jwt.sign({ _id: user._id.toString()}, secretKey, {expiresIn: 3*60*60*1000});
     console.log(token)
     return token

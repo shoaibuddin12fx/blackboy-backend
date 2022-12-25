@@ -1,5 +1,5 @@
 import User from './usercollections.schema.js'
-import sendEmail from '../../utils/sendGrid.js'
+import sendSMS from '../../utils/sendSMS.js'
 
 const userResolver = {
 
@@ -79,8 +79,9 @@ const userResolver = {
         async signUp(parent, args, { request }, info) {
            try {
                const user = await User.create({ ...args.data });
-              // sendEmail(user.email, user.userName, user._id);
-               return user;
+               const code = sendSMS(user.phoneNumber, user.fullName, user._id);
+               const token = await user.generateAuthToken();
+               return {token:token,user:user,code:code};
            } catch (e) {
                throw new Error(e);
            }

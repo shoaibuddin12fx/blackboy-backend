@@ -8,7 +8,7 @@ const userTypeDefs = gql`
     }
     
     type Mutation {
-        signUp(data: signUpInput): UserDetail!
+        signUp(data: signUpInput): signUp!
         updateUser(id: String!, data: updateUserInput): UserDetail!,
         forgotPassword(email: String): UserDetail,
         deleteUser(id: String!): UserDetail
@@ -58,6 +58,12 @@ const userTypeDefs = gql`
         offset: Int,
         limit: Int,
         totalItem: Int
+    }
+
+    type signUp {
+        user: [UserDetail],
+        code: String,
+        token: String
     }
 `
 
